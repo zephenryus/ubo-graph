@@ -1,0 +1,24 @@
+.ubo-graph {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+
+  .ubo-graph-plane {
+    position: relative;
+    transform: translateX(0) translateY(0) scale(1);
+    margin: 0;
+    padding: 0;
+    background: #f2f1fa;
+
+    .ubo-node {
+      width: 200px;
+      min-height: 20px;
+      position: absolute;
+      background: #fff;
+      padding: 20px 24px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+

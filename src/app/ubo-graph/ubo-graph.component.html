@@ -1,0 +1,25 @@
+<div class="ubo-graph" (mousedown)="startDrag($event)" (mousemove)="drag($event)" (mouseup)="endDrag($event)"
+     (mouseleave)="endDrag($event)" (wheel)="scroll($event)">
+  <div class="ubo-graph-plane"
+       [ngStyle]="{'transform': 'translate(' + graphPosition.x + 'px, ' + graphPosition.y + 'px) scale(' + graphPosition.zoom + ')'}">
+    <svg xmlns:svg="http://www.w3.org/2000/svg" [attr.viewBox]="'0 0 1920 1080'">
+      <svg:defs>
+        <!-- arrowhead marker definition -->
+        <svg:marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
+                markerWidth="6" markerHeight="6"
+                orient="auto-start-reverse">
+          <svg:path d="M 0 0 L 10 5 L 0 10 z" />
+        </svg:marker>
+      </svg:defs>
+
+      <svg:polyline *ngFor="let graphNode of uboData; let i = index;"
+                    [attr.points]="(i + 1 < uboData.length) ? (graphNode.x + 125) + ', ' + (graphNode.y + 76) + ' ' + (uboData[i + 1]?.x + 125) + ', ' + (uboData[i + 1]?.y - 3) : ''"
+                    fill="none" stroke="black" marker-end="url(#arrow)"/>
+    </svg>
+
+    <div class="ubo-node" *ngFor="let graphNode of uboData" [ngStyle]="{'left': graphNode.x + 'px', 'top': graphNode.y + 'px'}">
+      <div class="title">{{ graphNode.title }}</div>
+      <div class="content">{{ graphNode.content }}</div>
+    </div>
+  </div>
+</div>
